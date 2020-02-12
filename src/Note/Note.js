@@ -1,16 +1,50 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Note.css'
+import { parseISO } from 'date-fns'
+import NotesContext from '../NotesContext'
+export default class Note extends React.Component {
+  static defaultProps = {
+    onDeleteNote: () => [],
+  }
+  static contextType = NotesContext
 
-export default function Note(props) {
+  handleClickDelete = e => {
+    e.preventDefault();
+    const noteId = this.props.id
+
+    fetch(`http://localhost:9090/notes/${noteId}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json'
+    },
+    })
+    .then(res => {
+      if(!res.ok) {
+        return res.json().then(e => Promise.reject(e))
+      }
+        return res.json()
+    })
+    .then(() => {
+      this.context.deleteNote(noteId)
+      this.props.onDeleteNote(noteId)
+    })
+    .catch(err => console.log(err))
+    
+  }
+  render() {
+    const { name, id, modified } = this.props;
   return (
     <div className='Note'>
        <h2 className='Note__title'>
-        <Link to={`/note/${props.id}`}>
-          {props.name}
+        <Link to={`/note/${id}`}>
+          {name}
         </Link>
       </h2>
-      <button className='Note__delete' type='button'>
+      <button 
+        className='Note__delete' 
+        type='button'
+        onClick={this.handleClickDelete}>
         {' '}
         remove
       </button>
@@ -18,12 +52,12 @@ export default function Note(props) {
         <div className='Note__dates-modified'>
           Modified
           {' '}
-          {console.log(props.modified)}
           <span className='Date'>
-          {/* {/* {console.log(format(props.modified, 'Do MMM YYYY'))} */}
+              {parseISO(modified).toDateString()}
           </span> 
         </div>
       </div> 
     </div>
   )
+  }
 }

@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom'
 import Note from '../Note/Note'
 import CircleButton from '../CircleButton/CircleButton'
 import './NoteListMain.css'
+import NotesContext from '../NotesContext'
 
 export default function NoteListMain(props) {
   return (
+    <NotesContext.Consumer>
+      {(context) => (
     <section className='NoteListMain'>
       <ul>
-        {props.notes.map(note =>
+        {context.notes.filter(
+          note => note.folderId === props.match.params.folderId || props.match.path === '/')
+          .map(note =>
           <li key={note.id}>
             <Note
               id={note.id}
@@ -31,6 +36,8 @@ export default function NoteListMain(props) {
         </CircleButton>
       </div>
     </section>
+     )}
+    </NotesContext.Consumer>
   )
 }
 
