@@ -69,6 +69,7 @@ export default class AddFolder extends Component {
           type="text"
           className="folder-name"
           placeholder="Folder Name"
+          aria-label="Folder Title"
           onChange={e => this.handleInput(e)}
           required
         />
@@ -77,6 +78,7 @@ export default class AddFolder extends Component {
           type="submit"
           value="Submit"
           className="folder-submit"
+          aria-label="Submit"
           disabled={this.validateTitle()}
         >
           Submit

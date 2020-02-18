@@ -97,6 +97,7 @@ export default class AddNote extends Component {
           placeholder="Note Title"
           onChange={e => this.handleInput(e)}
           className="note-title"
+          aria-label="Note title"
           required
         />
         {this.state.name.touched && <ValidationError message={nameError} />}
@@ -104,6 +105,7 @@ export default class AddNote extends Component {
           placeholder="Contents of note here"
           onChange={e => this.handleTextArea(e)}
           className="note-content"
+          aria-label="Note content"
           cols="50"
           rows="10"
         ></textarea>
@@ -112,6 +114,7 @@ export default class AddNote extends Component {
           id="folders"
           value={this.state.value}
           className="note-dropdown"
+          aria-label="Choose the folder for the note to go into."
         >
           {folderOptions}
         </select>
@@ -119,6 +122,7 @@ export default class AddNote extends Component {
           type="submit"
           className="note-submit"
           value="Submit"
+          aria-label="Submit"
           disabled={this.validateName()}
         >
           Submit
