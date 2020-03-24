@@ -17,7 +17,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:9090/notes")
+    fetch("http://localhost:8000/api/notes")
       .then(res => {
         if (!res.ok) {
           return res.json().then(err => {
@@ -29,7 +29,7 @@ class App extends Component {
       .then(data => this.setState({ notes: data }))
       .catch(error => console.log(error));
 
-    fetch("http://localhost:9090/folders")
+    fetch("http://localhost:8000/api/folders")
       .then(res => {
         if (!res.ok) {
           return res.json().then(err => {
@@ -49,22 +49,22 @@ class App extends Component {
 
   handleAddFolder = title => {
     const folderName = title.name;
-    const folderId = title.id;
+    const folder_id = title.id;
     this.setState({
       ...this.state.folders.push({
         name: folderName,
-        id: folderId
+        id: folder_id
       })
     });
   };
 
   handleAddNote = note => {
-    const { name, id, folderId, content, modified } = note;
+    const { name, id, folder_id, content, modified } = note;
     this.setState({
       ...this.state.notes.push({
         name,
         id,
-        folderId,
+        folder_id,
         content,
         modified
       })

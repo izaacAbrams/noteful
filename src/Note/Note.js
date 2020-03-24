@@ -16,7 +16,7 @@ export default class Note extends React.Component {
     e.preventDefault();
     const noteId = this.props.id;
 
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
@@ -66,6 +66,6 @@ export default class Note extends React.Component {
 
 Note.propTypes = {
   name: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.number,
   modified: PropTypes.string
 };

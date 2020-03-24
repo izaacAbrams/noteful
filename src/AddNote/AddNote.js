@@ -13,7 +13,7 @@ export default class AddNote extends Component {
         touched: false
       },
       id: "",
-      folderId: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
+      folder_id: "",
       content: "",
       modified: ""
     };
@@ -38,7 +38,7 @@ export default class AddNote extends Component {
   };
   handleDropdown = e => {
     this.setState({
-      folderId: e.target.value
+      folder_id: e.target.value
     });
   };
   handleSubmit = e => {
@@ -48,7 +48,7 @@ export default class AddNote extends Component {
       name: this.state.name.value
     };
 
-    fetch("http://localhost:9090/notes", {
+    fetch("http://localhost:8000/api/notes", {
       method: "POST",
       body: JSON.stringify(input),
       headers: {
