@@ -13,7 +13,7 @@ export default class AddNote extends Component {
         touched: false
       },
       id: "",
-      folder_id: "1",
+      folder_id: "",
       content: "",
       modified: ""
     };
@@ -28,7 +28,8 @@ export default class AddNote extends Component {
         touched: true
       },
       id: randomId(),
-      modified: new Date().toISOString()
+      modified: new Date().toISOString(),
+      folder_id: this.context.folders[0].id
     });
   };
   handleTextArea = e => {
@@ -41,6 +42,7 @@ export default class AddNote extends Component {
       folder_id: e.target.value
     });
   };
+
   handleSubmit = e => {
     e.preventDefault();
     let input = {
