@@ -48,7 +48,7 @@ export default class AddNote extends Component {
       name: this.state.name.value
     };
 
-    fetch("http://localhost:8000/api/notes", {
+    fetch("https://peaceful-retreat-36933.herokuapp.com/api/notes", {
       method: "POST",
       body: JSON.stringify(input),
       headers: {

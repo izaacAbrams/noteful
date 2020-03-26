@@ -30,7 +30,7 @@ export default class AddFolder extends Component {
       name: this.state.input
     };
 
-    fetch("http://localhost:8000/api/folders", {
+    fetch("https://peaceful-retreat-36933.herokuapp.com/api/folders", {
       method: "POST",
       body: JSON.stringify(input),
       headers: {

@@ -17,7 +17,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/notes")
+    fetch("https://peaceful-retreat-36933.herokuapp.com/api/notes")
       .then(res => {
         if (!res.ok) {
           return res.json().then(err => {
@@ -29,7 +29,7 @@ class App extends Component {
       .then(data => this.setState({ notes: data }))
       .catch(error => console.log(error));
 
-    fetch("http://localhost:8000/api/folders")
+    fetch("https://peaceful-retreat-36933.herokuapp.com/api/folders")
       .then(res => {
         if (!res.ok) {
           return res.json().then(err => {
