@@ -13,7 +13,7 @@ export default class AddNote extends Component {
         touched: false
       },
       id: "",
-      folder_id: "",
+      folder_id: "1",
       content: "",
       modified: ""
     };
